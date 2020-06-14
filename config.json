@@ -1,0 +1,10 @@
+{
+    "token": "NzE5NDU1ODI4ODkyOTc1MTA2.Xt3tMg.VxoB2RqEdivtd2y7hdArxTjOBgQ",
+    "dbConnectionString": "nedb://nedb-data",
+    "serviceName": "RssHubeee",
+    "requiredPermissions": 84992,
+    "askTimeoutMs": 30000,
+    "dbClientConfig": {
+        "compactionWriteCount": 100
+    }
+}

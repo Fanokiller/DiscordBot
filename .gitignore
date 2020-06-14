@@ -1,7 +1,5 @@
 .vscode/[!.]*.json
 dist/
-config.json
-nedb-data
 
 # Created by https://www.gitignore.io/api/node
 
