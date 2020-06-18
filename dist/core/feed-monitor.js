@@ -13,7 +13,6 @@ class FeedMonitor {
         this.articlePoster = articlePoster;
     }
     async beginMonitoring() {
-        // See https://discord.js.org/#/docs/main/stable/typedef/Status
         //si le client n'est pas déconnecté
 
         while (this.client.djs.status !== 5)

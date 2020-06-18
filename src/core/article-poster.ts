@@ -9,6 +9,7 @@ const articleFormattingShort = "\n{{article}}"
 const articleFormattingLong = "\n{{article}}..."
 const articleContentCharacterLimit = 250
 
+// Affichage de l'article
 export default class ArticlePoster
 {
     public async postArticle(guild: Guild | DjsGuild, channelId: string, article: RssArticle, roleId: string)
@@ -22,10 +23,10 @@ export default class ArticlePoster
         }
         catch (e)
         {
-            Logger.debugLogError(`Error posting article in channel ${channel.name} in guild ${channel.guild.name}`, e)
+            Logger.debugLogError(`Erreur lors de la publication de l'article dans la chaîne ${channel.name} en accord avec ${channel.guild.name}`, e)
         }
     }
-
+// Format de l'article
     private formatPost(article: RssArticle)
     {
         const title = article.title ? `\n**${article.title}**` : ""

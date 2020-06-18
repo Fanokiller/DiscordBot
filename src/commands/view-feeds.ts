@@ -3,6 +3,8 @@ import Feed from "../models/feed"
 import Guild from "../models/guild"
 import Message from "../models/message"
 
+
+// Voir les flux configurés sous forme de liste
 const paginationLimit = 5
 
 async function invoke(params: string[], message: Message)

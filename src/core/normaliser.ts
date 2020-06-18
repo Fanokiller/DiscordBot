@@ -14,7 +14,7 @@ function convertYouTubeUrl(url: string): string
 {
     const parsedUrl = parse(url)
 
-    // Convert youtube.com urls to youtu.be urls, otherwise don't touch it
+    // Convertissez les URL youtube.com en URL youtu.be
     if (parsedUrl.host && parsedUrl.host.includes("youtube.com"))
     {
         const videoIdParam = parsedUrl.query ? parsedUrl.query.split("&").find(x => x.startsWith("v=")) : null

@@ -1,6 +1,8 @@
 import { Command, PermissionLevel } from "disharmony"
 import Message from "../models/message"
 
+//Suppression des flux configurés
+
 async function invoke(params: string[], message: Message)
 {
     const filtered = message.guild.feeds.filter(x => x.id !== params[0])

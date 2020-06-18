@@ -16,18 +16,18 @@ if (Cluster.isMaster) {
     client.login(config.token)
         .then(() => startFeedMonitor(client, !config.computedValues.isLocalDb))
         .catch(async (err) => {
-        await disharmony_1.Logger.consoleLogError("Error during initialisation", err);
+        await disharmony_1.Logger.consoleLogError("Erreur durant l'initialisation", err);
         process.exit(1);
     });
 }
+// Fonction qui sert au démarrage du moniteur
 async function startFeedMonitor(client, useForkedProcess) {
     const path = "./core/feed-monitor";
     if (useForkedProcess) {
         const worker = disharmony_1.forkWorkerClient(path_1.resolve(__dirname, path), config.computedValues.configPath);
-        worker.on("exit", (code) => process.exit(code));
+        worker.on("sortie", (code) => process.exit(code));
     }
     else {
-        // tslint:disable-next-line: variable-name
         const FeedMonitor = (await Promise.resolve().then(() => require(path))).default;
         new FeedMonitor(client, rss_fetcher_1.getRssFetcher(), new article_poster_1.default()).beginMonitoring();
     }

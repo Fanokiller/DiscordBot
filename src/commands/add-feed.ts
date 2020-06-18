@@ -7,34 +7,34 @@ import { getRssFetcher } from "../service/rss-reader/abstract/rss-fetcher"
 
 async function invoke(params: string[], message: Message, client: Client)
 {
-    // Validate and retrieve channel ID
+    // Valider et récupérer l'ID de canal
     if (message.mentions.channels.size === 0)
         throw new CommandRejection("Le salons n'est pas valide !")
     const channelId = message.mentions.channels.first().id
 
-    // Validate and retrieve feed URL
+    // Valider et récupérer l'URL du flux
     const url = params[0]
     if (!isValid(url))
         throw new CommandRejection("Votre URL n'est pas valide !")
 
-    // Retrieve (optional) roleID
+    // Récupérer roleID
     let roleId = ""
     if (message.mentions.roles.size > 0)
         roleId = message.mentions.roles.first().id
 
-    // Retrieve and validate against existing feeds for this channel
+    // Récupérer et valider par rapport aux flux existants pour cette chaîne
     const feeds = message.guild.feeds.filter(x => x.channelId === channelId)
     if (feeds.find(x => x.url === url))
         throw new CommandRejection("Ce fil existe déjà !")
 
-    // Add new feed
+    // Ajout d'un nouveau flux
     const newFeed = Feed.create(ShortId.generate(), url, channelId, roleId)
 
     let prompt = `Cela vous satisfait? (O/N)\n\`\`\`JSON\n${JSON.stringify(newFeed.toFriendlyObject(message.guild), null, "\t")}\`\`\``
     let userResponse: DisharmonyMessage, commandResponse = ""
     while (commandResponse === "")
     {
-        // Request confirmation
+        // Demande de confirmation
         const question = new Question(client, message.channelId, prompt, message.member, true)
         userResponse = await question.send()
 

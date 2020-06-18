@@ -1,78 +1,55 @@
-[![Build status](https://badge.buildkite.com/62f486c46eee48d183946c0afee863a7e64ab349544077a38b.svg?branch=master)](https://buildkite.com/benji7425/rss-fetcher)
+##Auteurs : 
+- CARRERE Ludovic
+- ISIK Hülya
 
-# Discord RSS fetcher
-A Discord bot to post the latest articles from an RSS feed into a channel, optionally mentioning a role when posting.
+# Les flux rss dans un bot discord 
+Mise en place d'un robot Discord pour publier les derniers articles d'un flux RSS dans une chaîne, mentionnant éventuellement un rôle lors de la publication.
+## Caratéristiques 
+- Plusieurs flux par channel 
+- Commandes pour configurer les flux dans différents canaux
+- Rôle facultatif à mentionner lors de la publication d'un article de flux
+- Gestion spécifique des liens YouTube et Twitter, détecte les URL YouTube longues et courtes
+## Cas d'utilisation 
+- Vous voulez rester à jour avec un flux RSS
+- Vous souhaitez que votre serveur Discord soit informé des événements via un flux RSS
 
-## Features
-- Multiple feeds per server
-- Commands to configure feeds in different channels
-- Optional role to be mentioned when a feed article is posted
-- Detects if a user "beats me to it" by posting the URL before the bot can (useful for slow feeds)
-- Specific handling for YouTube links, detects both long and short YouTube URLs
+## Pour commencer
+RssHubeee doit être déployé avant de pouvoir l'inviter sur votre serveur Discord
+Une fois que vous avez déployé RssHubeee, revenez ici pour suivre les instructions de configuration de Discord ci-dessous. 
 
-## Use cases
-- You want to stay up to date with an RSS feed
-- You want your Discord server to be notified of events via an RSS feed
+## Configuration du serveur Discord 
 
-## Community instance
-A community member, [Oliver4888](https://github.com/oliver4888), is kindly offering public hosts of my Discord bots for other community members. If you are interested in using this community-provided instance, you can find more at https://bots.ol48.uk/.  
-Please note that I cannot personally verify or take responsibility for the integrity of a community-provided bot instance.
+Suivez ces instructions une fois que vous avez déployé le récupérateur RSS et que vous l'avez ajouté à votre serveur Discord.
+Utilisez `l'aide de @RssHubeee` pour afficher les commandes disponibles.
 
-## Getting started
-RSS Fetcher needs to be deployed before you can invite it to your Discord server. Please see [my written deployment guide](https://benji7425.io/discord-deployment) or [video tutorial](https://www.youtube.com/watch?v=DjQayKgcjGM) which can guide you through deployment even if you are a beginner.  
-Once you have deployed RSS Fetcher then return here to follow the Discord setup instructions below.  
-
-This button can be used for following the Heroku deployment steps.
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/benji7425/discord-rss-fetcher)
-
-## Discord Setup
-
-Follow these instructions once you have deployed the RSS Fetcher and added it to your Discord server.
-Use `@RSS Fetcher help` to view available commands.
-
-**Admin only**
-These commands require administrator permission in the Discord server.
-- `@RSS Fetcher add-feed <url> <#channel> [@role]` to add a new feed
-- `@RSS Fetcher view-feeds` to view configured feeds for this server
-- `@RSS Fetcher remove-feed <feed-id>` to remove a feed by it's ID (found using the `view-feeds` command)
+**Permission de l'administrateur**
+Les commandes qui requiere les permissions admin sur le serveur discord.
+- `@RssHubeee ajout-feed <url> <#salon> [@role]` pour l'ajout d'un nouveau flux 
+- `@RssHubeee voir-feeds` pour afficher les flux configurés pour ce serveur
+- `@RssHubeee stop-feed <feed-id>` supprimer un flux par son ID (trouvé en utilisant la commande `voir-feeds`)
 
 Example:
-`@RSS Fetcher add-feed http://lorem-rss.herokuapp.com/feed?unit=second&interval=30 #rss-posts @subscribers`
+`@RssHubeee ajout-feed http://lorem-rss.herokuapp.com/feed?unit=second&interval=30 #information @Locataire`
 
 ## Permissions
-The bot requires certain permissions, which you are prompted for on the invite screen.
-Each permission has a reason for being required, explained below.
+Le bot nécessite certaines autorisations, qui vous sont demandées sur l'écran d'invitation.
+Chaque autorisation a une raison d'être requise, expliquée ci-dessous.
 
-| Permission           | Reason                                                              |
-|----------------------|---------------------------------------------------------------------|
-| Read messages        | Detect when you use commands                                        |
-| Send messages        | Respond when you use commands; post new RSS links                   |
-| Read message history | Check if any new RSS links have been posted during downtime         |
-| Embed links          | Responses to 'help' requests use message embeds for nice formatting |
+| Permission                     | Raison                                                                                      |
+|--------------------------------|---------------------------------------------------------------------------------------------|
+| Lire un message                | Detecte quand on utilise la commande                                                        |
+| Envoyer un message             | Répond quand on utilise une commande; post publi des nouveaux lien RSS                      |
+| Lire l'historique des messages | Vérifiez si de nouveaux liens RSS ont été publiés pendant les temps d'arrêt                 |
+| Intégrer des liens             | Les réponses aux demandes d'aide utilisent des messages intégrés pour un formatage agréable |
 
-## Troubleshooting
-
-- Test RSS Fetcher's ability to reply by using the version command `@RSS Fetcher version`
-- Double check that RSS Fetcher has both *read* and *write* permissions in the channel you're using
-- Make sure you're actually mentioning the bot and *not the role with the same name*
-- Make sure you have the 'Administrator' permission if you're trying to use an admin command
-- Double check that you've given RSS Fetcher all the necessary [permissions](#permissions)
-- If you want RSS Fetcher to mention a role when it posts a new feed, make sure this role is mentionable
-- Make sure your RSS feed is valid by testing it on an RSS feed validator website
-- If you delete a channel and recreate it with the same name, you will need to delete and re-create the feed also
-
-## Built With
-- [Node.js](https://nodejs.org/en/) - *Runtime*
-- [discord.js](https://github.com/discordjs/discord.js) - *Discord library*
+## Dépendances 
+- [Node.js](https://nodejs.org/en/) - *execution*
+- [discord.js](https://github.com/discordjs/discord.js) - *Librairie de Discord*
 - [disharmony](https://github.com/benji7425/disharmony) - *Bot framework*
-- [rss-parser](https://github.com/bobby-brennan/rss-parser) - *RSS parsing library*
-
-## Versioning
-[SemVer](http://semver.org/) is used for versioning; view available versions on the [tags page](https://github.com/your/project/tags)
+- [rss-parser](https://github.com/bobby-brennan/rss-parser) - *Bibliothèque d'analyse Rss*
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+Ce projet est sous licence MIT - voir le fichier [LICENSE] (./ LICENSE) pour plus de détails
 "# DiscordBot" 
 "# DiscordBot" 
 "# DiscordBot" 
