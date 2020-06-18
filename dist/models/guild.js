@@ -1,4 +1,7 @@
 "use strict";
+
+// Création d'un document automatisé qui répertorie les différentes actualitées par jour sous forme de tableau
+
 Object.defineProperty(exports, "__esModule", { value: true });
 const disharmony_1 = require("disharmony");
 const feed_1 = require("./feed");

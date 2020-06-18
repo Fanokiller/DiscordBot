@@ -1,15 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const url_1 = require("url");
+
+// Transcription des URL HTML en URL Commande
 function forCache(url) {
     return forDiscord(url).replace(/^((https?:\/\/)?(www.)?)/, "");
 }
+// Conversion de Youtube sur Discord
 function forDiscord(url) {
     return convertYouTubeUrl(url);
 }
+//Analyse de l'URL pour la conversion de Youtube
 function convertYouTubeUrl(url) {
     const parsedUrl = url_1.parse(url);
-    // Convert youtube.com urls to youtu.be urls, otherwise don't touch it
+
+    // Conversion des URL de youtube.com en URL de youtu.be
     if (parsedUrl.host && parsedUrl.host.includes("youtube.com")) {
         const videoIdParam = parsedUrl.query ? parsedUrl.query.split("&").find(x => x.startsWith("v=")) : null;
         if (videoIdParam) {

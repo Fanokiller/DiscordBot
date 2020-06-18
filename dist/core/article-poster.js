@@ -5,7 +5,10 @@ const HtmlToText = require("html-to-text");
 const overallCharacterLimit = 750;
 const articleFormattingShort = "\n{{article}}";
 const articleFormattingLong = "\n{{article}}...";
-const articleContentCharacterLimit = 0;
+const articleContentCharacterLimit = 250;
+
+// Affichage des articles
+
 class ArticlePoster {
     async postArticle(guild, channelId, article, roleId) {
         const channel = guild.channels.get(channelId);
@@ -14,9 +17,11 @@ class ArticlePoster {
             await channel.send((roleId ? `<@&${roleId}>` : "") + message);
         }
         catch (e) {
-            disharmony_1.Logger.debugLogError(`Error posting article in channel ${channel.name} in guild ${channel.guild.name}`, e);
+            disharmony_1.Logger.debugLogError(`Erreur lors de la publication de l'article dans la chaîne ${channel.name} en accord avec ${channel.guild.name}`, e);
         }
     }
+
+    // Formate la publication du message
     formatPost(article) {
         const title = article.title ? `\n**${article.title}**` : "";
         const link = article.link ? `\n${article.link}` : "";
