@@ -7,7 +7,7 @@ import RssArticle from "../service/rss-reader/abstract/rss-article"
 const overallCharacterLimit = 750
 const articleFormattingShort = "\n{{article}}"
 const articleFormattingLong = "\n{{article}}..."
-const articleContentCharacterLimit = 250
+const articleContentCharacterLimit = 0
 
 // Affichage de l'article
 export default class ArticlePoster

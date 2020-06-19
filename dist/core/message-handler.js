@@ -1,7 +1,4 @@
 "use strict";
-
-// Traitement des messages
-
 Object.defineProperty(exports, "__esModule", { value: true });
 const getUrls = require("get-urls");
 async function handleMessage(message) {

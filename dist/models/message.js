@@ -1,7 +1,4 @@
 "use strict";
-
-// sert principalement aux mises à jour et mise en forme des différents messages.
-
 Object.defineProperty(exports, "__esModule", { value: true });
 const disharmony_1 = require("disharmony");
 const guild_1 = require("./guild");

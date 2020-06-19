@@ -4,8 +4,6 @@ const disharmony_1 = require("disharmony");
 const guild_1 = require("../models/guild");
 const rss_fetcher_1 = require("../service/rss-reader/abstract/rss-fetcher");
 const article_poster_1 = require("./article-poster");
-
-
 class FeedMonitor {
     constructor(client, rssFetcher, articlePoster) {
         this.client = client;
